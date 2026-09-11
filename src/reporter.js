@@ -14,6 +14,7 @@ export function reportEnvironment(result) {
 
     console.log();
   }
+
   if (result.missingValues.length > 0) {
     console.log(chalk.red.bold("Variables with missing values:"));
 
@@ -22,6 +23,8 @@ export function reportEnvironment(result) {
         `  ${chalk.red("✗")} ${chalk.red(variable)} - defined in .env but has no value`,
       );
     }
+
+    console.log();
   }
 
   if (result.unused.length > 0) {
@@ -29,7 +32,7 @@ export function reportEnvironment(result) {
 
     for (const variable of result.unused) {
       console.log(
-        `  ${chalk.yellow("⚠")} ${chalk.yellow(variable)} - defined but not used`,
+        `  ${chalk.yellow("⚠")} ${chalk.yellow(variable.name)} - defined but not used`,
       );
     }
 

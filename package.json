@@ -1,5 +1,5 @@
 {
-  "name": "env-safe",
+  "name": "@pasindujeewan/env-safe",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
@@ -7,7 +7,7 @@
     "test": "vitest run"
   },
   "bin": {
-    "env-safe": "./bin/env-checker.js"
+    "env-safe": "bin/env-checker.js"
   },
   "keywords": [],
   "author": "",
