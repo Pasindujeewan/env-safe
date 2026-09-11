@@ -1,6 +1,5 @@
 import fs from "node:fs";
 
-// Reads a .env file and extracts the variable names
 export function readEnvFile(filePath = ".env") {
   const content = fs.readFileSync(filePath, "utf8");
 
@@ -12,11 +11,17 @@ export function readEnvFile(filePath = ".env") {
     if (!trimmed || trimmed.startsWith("#")) {
       continue;
     }
-
-    const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*=/);
+    // Match lines in the format of KEY=VALUE, allowing for optional whitespace around the equals sign
+    const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/);
 
     if (match) {
-      variables.push(match[1]);
+      const variable = match[1];
+      const value = match[2].trim();
+
+      variables.push({
+        name: variable,
+        value,
+      });
     }
   }
 
